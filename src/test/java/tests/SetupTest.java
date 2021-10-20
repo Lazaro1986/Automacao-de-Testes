@@ -1,6 +1,11 @@
 package tests;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
+import pageObjects.AccountCreationPage;
+import pageObjects.HomePage;
+import pageObjects.LoginPage;
+import utils.Browser;
 
 import static org.junit.Assert.assertTrue;
 import static utils.Browser.getCurrentDriver;
@@ -11,6 +16,40 @@ public class SetupTest extends BaseTests {
     @Test
     public void testOpeningBrowserAndLoadingPage(){
         assertTrue(getCurrentDriver().getCurrentUrl().contains(getBaseUrl()));
-        System.out.print("Abrimos o navegador e carregamos a url!!");
+        System.out.println("Abrimos o navegador e carregamos a url!!");
+    }
+
+    @Test
+    public void testCreatAnAccount(){
+        //Iniciar as páginas
+        HomePage home = new HomePage();
+        LoginPage login = new LoginPage();
+        AccountCreationPage register = new AccountCreationPage();
+
+        home.clickBtnLogin();
+
+        login.fillEmailCreate();
+        login.clickBtnSubmitCreate();
+
+        register.fillCustomerFirstname();
+        register.fillCustomerLastname();
+        register.fillPasswd();
+        register.fillAddress1();
+        register.fillCity();
+        register.fillId_state();
+        register.fillPostcode();
+        register.fillPhone_mobile();
+
+        System.out.println("Final do form");
+        register.clickBtnSubmitAccount();
+
+
+
+        //validação final
+        assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading")).getText()
+                .contains("MY ACCOUNT"));
+        System.out.println("Validou minha conta no site");
+
+
     }
 }
