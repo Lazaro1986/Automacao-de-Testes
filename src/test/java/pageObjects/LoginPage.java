@@ -29,7 +29,7 @@ public class LoginPage extends LoginPageElementMapper {
 
     //Login de usuário já cadastrado
     public void fillEmail(){
-        email.sendKeys("jcslazaro1986@gmail.com");
+        email.sendKeys("acucar@mascavo.com");
     }
     public void fillPasswd(){
         passwd.sendKeys("12345");

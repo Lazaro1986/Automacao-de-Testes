@@ -13,4 +13,8 @@ public class HomePage extends HomePageElementMapper {
     public void clickBtnLogin(){
         login.click();
     }
+
+    public void clickCategoryTShirts(){
+        menuTshirts.click();
+    }
 }

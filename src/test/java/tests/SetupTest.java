@@ -3,6 +3,7 @@ package tests;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import pageObjects.AccountCreationPage;
+import pageObjects.CategoryPage;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
 import utils.Browser;
@@ -58,6 +59,7 @@ public class SetupTest extends BaseTests {
         //Iniciar as páginas
         HomePage home = new HomePage();
         LoginPage login = new LoginPage();
+        CategoryPage category = new CategoryPage();
 
         home.clickBtnLogin();
 
@@ -67,6 +69,16 @@ public class SetupTest extends BaseTests {
                 .contains("MY ACCOUNT"));
         System.out.println("Validou minha conta no site");
 
+
+
+        //Pesquisar um produto
+        //clicar na categoria T-Shirts
+        home.clickCategoryTShirts();
+
+        //validar se ao clicar na categoria T-SHIRTS ocorre o direcionamento correto
+        assertTrue(category.isPageTshirts());
+
+        System.out.println("Validou página de categoria T-Shirts");
 
     }
 }
