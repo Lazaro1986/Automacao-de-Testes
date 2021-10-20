@@ -52,4 +52,21 @@ public class SetupTest extends BaseTests {
 
 
     }
+
+    @Test
+    public void testPurchaseValidation(){
+        //Iniciar as páginas
+        HomePage home = new HomePage();
+        LoginPage login = new LoginPage();
+
+        home.clickBtnLogin();
+
+        login.loginAlreadyRegistered();
+
+        assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading")).getText()
+                .contains("MY ACCOUNT"));
+        System.out.println("Validou minha conta no site");
+
+
+    }
 }
