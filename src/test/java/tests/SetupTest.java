@@ -6,16 +6,8 @@ import pageObjects.*;
 import utils.Browser;
 
 import static org.junit.Assert.assertTrue;
-import static utils.Browser.getCurrentDriver;
-import static utils.Utils.getBaseUrl;
 
 public class SetupTest extends BaseTests {
-
-    @Test
-    public void testOpeningBrowserAndLoadingPage(){
-        assertTrue(getCurrentDriver().getCurrentUrl().contains(getBaseUrl()));
-        System.out.println("Abrimos o navegador e carregamos a url!!");
-    }
 
     @Test
     public void testCreatAnAccount(){
@@ -41,13 +33,10 @@ public class SetupTest extends BaseTests {
         System.out.println("Final do form");
         register.clickBtnSubmitAccount();
 
-
-
         //validação final
         assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading")).getText()
                 .contains("MY ACCOUNT"));
         System.out.println("Validou minha conta no site");
-
 
     }
 
@@ -58,44 +47,55 @@ public class SetupTest extends BaseTests {
         LoginPage login = new LoginPage();
         CategoryPage category = new CategoryPage();
         ProductPage pdp = new ProductPage();
+        CartPage cart = new CartPage();
+        CartAddressPage cartAddress = new CartAddressPage();
+        CartShippingPage cartShipping = new CartShippingPage();
+        CartPaymentPage cartPayment = new CartPaymentPage();
+        CartOrderSummaryPage cartOrder = new CartOrderSummaryPage();
 
         home.clickBtnLogin();
 
         login.loginAlreadyRegistered();
 
-        assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading")).getText()
-                .contains("MY ACCOUNT"));
-        System.out.println("Validou minha conta no site");
-
-
-
-        //Pesquisar um produto
         //clicar na categoria T-Shirts
         home.clickCategoryTShirts();
 
-        //validar se ao clicar na categoria T-SHIRTS ocorre o direcionamento correto
-        assertTrue(category.isPageTshirts());
-
-        System.out.println("Validou página de categoria T-Shirts");
-
-
         //Acessar página do produto
-        String nameProductCategory = category.getProductNameCategory();
         category.clickProductAddToProductPage();
 
-        //Validar a página do produto
-        assertTrue(pdp.getProductNamePDP().equals(nameProductCategory));
-
-
+        //Guardar o nome do produto desejado
+        String initialProductName = pdp.getProductNamePDP();
 
         //Adicionar o produto ao carrinho
-        pdp.addProductToCartPage();
+        pdp.clickButtonAddToCart();
+        pdp.clickButtonModalProceedToCheckout();
 
+        //Proceder com a compra
+        cart.clickBtnProceedToCheckout();
 
-        
+        //Clicar no botão PROCESS ADDRESS na página CartAddress
+        cartAddress.clickBtnProcessAddress();
 
+        //Clicar no botão PROCEED TO CHECKOUT na página CartShipping
+        cartShipping.clickCheckboxTerms(); //clicar na checkbox dos termos
+        cartShipping.clickBtnProcessCarrier();
 
+        //Guardar o nome do produto para validação
+        String endProductName = cartPayment.getProductNamePayment();
+        //escolher forma de pagamento na página Payment
+        cartPayment.clickBtnPaymentMethod();
 
+        //Confirmar ordem de compra
+        cartOrder.clickBtnConfirmOrder();
+
+        //Validar se o produto comprado está correto
+        assertTrue(initialProductName.equals(endProductName));
+
+        //Validar compra no site
+        assertTrue(Browser.getCurrentDriver().findElement(By.className("page-heading")).getText()
+                .contains("ORDER CONFIRMATION"));
+        System.out.println("Validou minha compra no site");
 
     }
+
 }

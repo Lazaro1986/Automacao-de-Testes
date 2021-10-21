@@ -22,9 +22,4 @@ public class ProductPage extends ProductPageElementMapper {
         buttonModalProceedToCheckout.click();
     }
 
-    public void addProductToCartPage(){
-        clickButtonAddToCart();
-        clickButtonModalProceedToCheckout();
-    }
-
 }

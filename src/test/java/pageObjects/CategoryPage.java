@@ -10,28 +10,9 @@ public class CategoryPage extends CategoryPageElementMapper {
         PageFactory.initElements(Browser.getCurrentDriver(), this);
     }
 
-
-
-    public String getAuthenticationPageTShirts(){
-        return nameCategoryTShirts.getText();
-    }
-
-    public boolean isPageTshirts() {
-        return getAuthenticationPageTShirts().contains("T-SHIRTS");
-    }
-
-
-
-    //Acessar a página do produto
-
     public void clickProductAddToProductPage(){
         BasePage.mouseOver(productNameCategory);
         buttonMoreAddToProductPage.click();
     }
-
-    public String getProductNameCategory() {
-        return productNameCategory.getText();
-    }
-
 
 }

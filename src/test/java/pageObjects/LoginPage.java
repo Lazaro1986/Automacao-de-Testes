@@ -12,7 +12,6 @@ public class LoginPage extends LoginPageElementMapper {
         PageFactory.initElements(Browser.getCurrentDriver(), this);
     }
 
-
     //Criação de cadastro de usuário não cadastrado previamente
     Random random = new Random();
     String emailRandom = "guerreirosmisticos"+random.nextInt()+"@kaah.com";
@@ -24,8 +23,6 @@ public class LoginPage extends LoginPageElementMapper {
     public void clickBtnSubmitCreate(){
         SubmitCreate.click();
     }
-
-
 
     //Login de usuário já cadastrado
     public void fillEmail(){

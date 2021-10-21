@@ -5,12 +5,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class CategoryPageElementMapper {
 
-    @FindBy(className = "cat-name")
-    public WebElement nameCategoryTShirts;
-
-    @FindBy(css = ".product-container")
-    public WebElement product;
-
     @FindBy(css = ".button[title=View]")
     public WebElement buttonMoreAddToProductPage;
 
