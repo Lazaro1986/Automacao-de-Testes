@@ -2,10 +2,7 @@ package tests;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import pageObjects.AccountCreationPage;
-import pageObjects.CategoryPage;
-import pageObjects.HomePage;
-import pageObjects.LoginPage;
+import pageObjects.*;
 import utils.Browser;
 
 import static org.junit.Assert.assertTrue;
@@ -60,6 +57,7 @@ public class SetupTest extends BaseTests {
         HomePage home = new HomePage();
         LoginPage login = new LoginPage();
         CategoryPage category = new CategoryPage();
+        ProductPage pdp = new ProductPage();
 
         home.clickBtnLogin();
 
@@ -79,6 +77,25 @@ public class SetupTest extends BaseTests {
         assertTrue(category.isPageTshirts());
 
         System.out.println("Validou página de categoria T-Shirts");
+
+
+        //Acessar página do produto
+        String nameProductCategory = category.getProductNameCategory();
+        category.clickProductAddToProductPage();
+
+        //Validar a página do produto
+        assertTrue(pdp.getProductNamePDP().equals(nameProductCategory));
+
+
+
+        //Adicionar o produto ao carrinho
+        pdp.addProductToCartPage();
+
+
+        
+
+
+
 
     }
 }
