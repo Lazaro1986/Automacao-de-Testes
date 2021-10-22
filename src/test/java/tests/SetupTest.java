@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import pageObjects.*;
@@ -7,9 +9,12 @@ import utils.Browser;
 
 import static org.junit.Assert.assertTrue;
 
+
+@Feature("Testes site de ecommerce")
 public class SetupTest extends BaseTests {
 
     @Test
+    @Story("Criar um cadastro de usuário")
     public void testCreatAnAccount(){
         //Iniciar as páginas
         HomePage home = new HomePage();
@@ -41,6 +46,7 @@ public class SetupTest extends BaseTests {
     }
 
     @Test
+    @Story("Realizar uma compra no site")
     public void testPurchaseValidation(){
         //Iniciar as páginas
         HomePage home = new HomePage();
